@@ -163,6 +163,64 @@ SERVO_DB = [
         "type": "digital",
         "category": "large",
     },
+    # --- 9 g class ---
+    {
+        "name": "Emax ES08MD II",
+        "torque": [
+            {"voltage_v": 4.8, "oz_in": 30.6, "kg_cm": 2.2},
+            {"voltage_v": 6.0, "oz_in": 34.7, "kg_cm": 2.5},
+        ],
+        "speed": [
+            {"voltage_v": 4.8, "sec_60deg": 0.09},
+            {"voltage_v": 6.0, "sec_60deg": 0.07},
+        ],
+        "weight_g": 8.5,
+        "type": "digital",
+        "category": "9g",
+    },
+    {
+        "name": "KST DS113MG",
+        "torque": [
+            {"voltage_v": 4.8, "oz_in": 20.8, "kg_cm": 1.5},
+            {"voltage_v": 6.0, "oz_in": 30.5, "kg_cm": 2.2},
+        ],
+        "speed": [
+            {"voltage_v": 4.8, "sec_60deg": 0.09},
+            {"voltage_v": 6.0, "sec_60deg": 0.07},
+        ],
+        "weight_g": 8.0,
+        "type": "digital",
+        "category": "9g",
+    },
+    # --- 17 g class ---
+    {
+        "name": "Hitec HS-85MG+",
+        "torque": [
+            {"voltage_v": 4.8, "oz_in": 41.7, "kg_cm": 3.0},
+            {"voltage_v": 6.0, "oz_in": 48.6, "kg_cm": 3.5},
+        ],
+        "speed": [
+            {"voltage_v": 4.8, "sec_60deg": 0.15},
+            {"voltage_v": 6.0, "sec_60deg": 0.14},
+        ],
+        "weight_g": 16.6,
+        "type": "digital",
+        "category": "17g",
+    },
+    {
+        "name": "Blue Bird BMS-306BB",
+        "torque": [
+            {"voltage_v": 4.8, "oz_in": 47.2, "kg_cm": 3.4},
+            {"voltage_v": 6.0, "oz_in": 57.1, "kg_cm": 4.1},
+        ],
+        "speed": [
+            {"voltage_v": 4.8, "sec_60deg": 0.13},
+            {"voltage_v": 6.0, "sec_60deg": 0.11},
+        ],
+        "weight_g": 17.5,
+        "type": "digital",
+        "category": "17g",
+    },
 ]
 
 AIR_DENSITY_KG_M3 = 1.225  # sea level, ISA
@@ -451,16 +509,114 @@ def run_tail_elevator_selection(
     print("\n" + "=" * 68)
 
 
+def run_aileron_selection(
+    label: str,
+    area_per_side_mm2: float,
+    span_mm: float,
+    chord_mm: float,
+    hinge_from_le_mm: float,
+    top_speed_kmh: float,
+) -> None:
+    """
+    Servo selection report for a single aileron panel (one side).
+
+    Parameters
+    ----------
+    label             : descriptive name, e.g. 'Outer aileron'
+    area_per_side_mm2 : planform area of one aileron panel (mm²)
+    span_mm           : span of the panel (mm)
+    chord_mm          : aileron chord front to back (mm)
+    hinge_from_le_mm  : hinge distance from leading edge of aileron (mm)
+    top_speed_kmh     : maximum airspeed (km/h)
+    """
+    # Derive ch_eff from balance ratio — plain flap approximation
+    balance_frac = hinge_from_le_mm / chord_mm
+    ch_eff = round(0.09 * (1.0 - 2.0 * balance_frac), 4)
+
+    result = hinge_moment_elevator(
+        area_per_side_mm2, span_mm, chord_mm, hinge_from_le_mm,
+        top_speed_kmh, ch_eff=ch_eff,
+    )
+    recommendations = recommend_servos(result["required_torque_oz_in"])
+
+    req_nm  = result["required_torque_nm"]
+    req_oiz = result["required_torque_oz_in"]
+    req_kg  = req_nm * 10.197
+    req_disp = _kg_or_g(req_kg)
+
+    hm_nm  = result["hinge_moment_nm"]
+    hm_kg  = hm_nm * 10.197
+    hm_disp = _kg_or_g(hm_kg)
+
+    print("=" * 68)
+    print(f"  AILERON SERVO SELECTION — {label.upper()}")
+    print("=" * 68)
+    print(f"  Area (per side)     : {area_per_side_mm2:.2f} mm²")
+    print(f"  Span                : {span_mm:.2f} mm")
+    print(f"  Chord               : {chord_mm:.2f} mm")
+    print(f"  Hinge from LE       : {hinge_from_le_mm:.5f} mm"
+          f"  ({balance_frac * 100:.1f}% balance)")
+    print(f"  Ch effective        : {ch_eff}")
+    print(f"  Top speed           : {top_speed_kmh} km/h")
+    print("-" * 68)
+    print(f"  Dynamic pressure    : {result['dynamic_pressure_pa']:.1f} Pa")
+    print(f"  Hinge moment        : {hm_nm:.4f} N·m"
+          f"  ({result['hinge_moment_oz_in']:.2f} oz-in / {hm_disp})")
+    print(f"  Required torque     : {req_nm:.4f} N·m"
+          f"  ({req_oiz:.2f} oz-in / {req_disp})"
+          f"  [{SAFETY_FACTOR}× safety factor]")
+    print("=" * 68)
+    print("  SERVO RECOMMENDATIONS  (one per panel)")
+    print("=" * 68)
+
+    if not recommendations:
+        print("  No servos in database meet the torque requirement.")
+    else:
+        for i, s in enumerate(recommendations, 1):
+            max_kg = s["max_torque_oz_in"] / 13.89
+            need_kg = s["required_oz_in"] / 13.89
+            print(f"\n  [{i}] {s['name']}  ({s['category']}, {s['type']})"
+                  f"  —  {s['weight_g']} g")
+            print(f"      Torque : {format_torque_specs(s['torque_specs'])}")
+            print(f"      Speed  : {format_speed_specs(s['speed_specs'])}")
+            print(f"      Margin : +{s['margin_pct']:.1f}% above requirement"
+                  f"  (need {req_oiz:.2f} oz-in / {_kg_or_g(need_kg)},"
+                  f" rated {s['max_torque_oz_in']:.1f} oz-in"
+                  f" / {_kg_or_g(max_kg)} @ {s['max_torque_voltage_v']}V)")
+
+    print("\n" + "=" * 68 + "\n")
+
+
 if __name__ == "__main__":
-    # --- Your aircraft ---
-    # 56674.31253 mm² is the area of ONE half (half of original 98503.57 mm²)
-    # Pass it directly as area_per_half; total_area_mm2 = 2 × half
+    # --- Horizontal stabilator ---
     run_tail_elevator_selection(
-        total_area_mm2=56674.31253 * 2,   # both halves combined
+        total_area_mm2=56674.31253 * 2,
         span_per_half_mm=258.13507,
         chord_mm=299.79,
         hinge_from_le_mm=63.0,
         cruise_kmh=100,
         top_speed_kmh=160,
         surface_type="stabilator",
+    )
+
+    # --- Ailerons ---
+    AILERON_CHORD_MM  = 47.93980
+    AILERON_HINGE_MM  = 1.54395   # hinge rod centre from LE
+
+    run_aileron_selection(
+        label="Outer aileron (high speed)",
+        area_per_side_mm2=5297.05266,
+        span_mm=121.21270,
+        chord_mm=AILERON_CHORD_MM,
+        hinge_from_le_mm=AILERON_HINGE_MM,
+        top_speed_kmh=160,
+    )
+
+    run_aileron_selection(
+        label="Inner aileron",
+        area_per_side_mm2=7944.91055,
+        span_mm=181.92023,
+        chord_mm=AILERON_CHORD_MM,
+        hinge_from_le_mm=AILERON_HINGE_MM,
+        top_speed_kmh=160,
     )
