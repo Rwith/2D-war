@@ -613,10 +613,10 @@ if __name__ == "__main__":
     )
 
     run_aileron_selection(
-        label="Inner aileron",
+        label="Inner aileron (low-medium speed)",
         area_per_side_mm2=7944.91055,
         span_mm=181.92023,
         chord_mm=AILERON_CHORD_MM,
         hinge_from_le_mm=AILERON_HINGE_MM,
-        top_speed_kmh=160,
+        top_speed_kmh=100,   # low-medium speed surface
     )
