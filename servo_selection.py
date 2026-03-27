@@ -22,6 +22,7 @@ SERVO_DB = [
         "weight_g": 19.8,
         "type": "analog",
         "category": "micro",
+        "waterproof": False,
     },
     {
         "name": "Hitec HS-5070MH",
@@ -36,6 +37,7 @@ SERVO_DB = [
         "weight_g": 20.2,
         "type": "digital",
         "category": "micro",
+        "waterproof": False,
     },
     {
         "name": "Savox SH-0257MG",
@@ -50,6 +52,7 @@ SERVO_DB = [
         "weight_g": 21.0,
         "type": "digital",
         "category": "micro",
+        "waterproof": False,
     },
     {
         "name": "Hitec HS-5625MG",
@@ -64,6 +67,7 @@ SERVO_DB = [
         "weight_g": 55.2,
         "type": "digital",
         "category": "standard",
+        "waterproof": False,
     },
     {
         "name": "Hitec HS-5585MH",
@@ -78,6 +82,7 @@ SERVO_DB = [
         "weight_g": 58.0,
         "type": "digital",
         "category": "standard",
+        "waterproof": False,
     },
     {
         "name": "Savox SV-0220MG",
@@ -92,6 +97,7 @@ SERVO_DB = [
         "weight_g": 56.0,
         "type": "digital",
         "category": "standard",
+        "waterproof": False,
     },
     {
         "name": "Hitec HS-5685MH",
@@ -106,6 +112,7 @@ SERVO_DB = [
         "weight_g": 60.0,
         "type": "digital",
         "category": "standard",
+        "waterproof": False,
     },
     {
         "name": "Savox SC-1268SG",
@@ -120,6 +127,7 @@ SERVO_DB = [
         "weight_g": 68.0,
         "type": "digital",
         "category": "large",
+        "waterproof": False,
     },
     {
         "name": "Futaba S3071SV",
@@ -134,6 +142,7 @@ SERVO_DB = [
         "weight_g": 68.3,
         "type": "digital",
         "category": "large",
+        "waterproof": False,
     },
     {
         "name": "Hitec HS-7954SH",
@@ -148,6 +157,7 @@ SERVO_DB = [
         "weight_g": 96.0,
         "type": "digital",
         "category": "large",
+        "waterproof": False,
     },
     {
         "name": "Savox SB-2274SG",
@@ -162,6 +172,86 @@ SERVO_DB = [
         "weight_g": 108.0,
         "type": "digital",
         "category": "large",
+        "waterproof": False,
+    },
+    # --- Waterproof 9g class ---
+    {
+        "name": "Hitec HS-5086WP",
+        "torque": [
+            {"voltage_v": 4.8, "oz_in": 27.1, "kg_cm": 1.95},
+            {"voltage_v": 6.0, "oz_in": 34.7, "kg_cm": 2.5},
+        ],
+        "speed": [
+            {"voltage_v": 4.8, "sec_60deg": 0.14},
+            {"voltage_v": 6.0, "sec_60deg": 0.12},
+        ],
+        "weight_g": 19.9,
+        "type": "digital",
+        "category": "9g",
+        "waterproof": True,
+    },
+    # --- Waterproof 17g class ---
+    {
+        "name": "Savox SW-0250MG",
+        "torque": [
+            {"voltage_v": 4.8, "oz_in": 22.2, "kg_cm": 1.6},
+            {"voltage_v": 6.0, "oz_in": 27.8, "kg_cm": 2.0},
+        ],
+        "speed": [
+            {"voltage_v": 4.8, "sec_60deg": 0.13},
+            {"voltage_v": 6.0, "sec_60deg": 0.12},
+        ],
+        "weight_g": 13.4,
+        "type": "digital",
+        "category": "17g",
+        "waterproof": True,
+    },
+    # --- Waterproof standard class ---
+    {
+        "name": "Savox SW-0231MG",
+        "torque": [
+            {"voltage_v": 4.8, "oz_in": 55.6, "kg_cm": 4.0},
+            {"voltage_v": 6.0, "oz_in": 69.4, "kg_cm": 5.0},
+        ],
+        "speed": [
+            {"voltage_v": 4.8, "sec_60deg": 0.17},
+            {"voltage_v": 6.0, "sec_60deg": 0.14},
+        ],
+        "weight_g": 56.0,
+        "type": "digital",
+        "category": "standard",
+        "waterproof": True,
+    },
+    # --- Waterproof large class ---
+    {
+        "name": "Savox SW-1210SG",
+        "torque": [
+            {"voltage_v": 6.0, "oz_in": 361.1, "kg_cm": 26.0},
+            {"voltage_v": 7.4, "oz_in": 430.6, "kg_cm": 31.0},
+        ],
+        "speed": [
+            {"voltage_v": 6.0, "sec_60deg": 0.15},
+            {"voltage_v": 7.4, "sec_60deg": 0.13},
+        ],
+        "weight_g": 96.0,
+        "type": "digital",
+        "category": "large",
+        "waterproof": True,
+    },
+    {
+        "name": "Savox SW-2290SG",
+        "torque": [
+            {"voltage_v": 6.0, "oz_in": 361.1, "kg_cm": 26.0},
+            {"voltage_v": 8.4, "oz_in": 486.1, "kg_cm": 35.0},
+        ],
+        "speed": [
+            {"voltage_v": 6.0, "sec_60deg": 0.17},
+            {"voltage_v": 8.4, "sec_60deg": 0.13},
+        ],
+        "weight_g": 108.0,
+        "type": "digital",
+        "category": "large",
+        "waterproof": True,
     },
     # --- 9 g class ---
     {
@@ -177,6 +267,7 @@ SERVO_DB = [
         "weight_g": 8.5,
         "type": "digital",
         "category": "9g",
+        "waterproof": False,
     },
     {
         "name": "KST DS113MG",
@@ -191,6 +282,7 @@ SERVO_DB = [
         "weight_g": 8.0,
         "type": "digital",
         "category": "9g",
+        "waterproof": False,
     },
     # --- 17 g class ---
     {
@@ -206,6 +298,7 @@ SERVO_DB = [
         "weight_g": 16.6,
         "type": "digital",
         "category": "17g",
+        "waterproof": False,
     },
     {
         "name": "Blue Bird BMS-306BB",
@@ -220,12 +313,14 @@ SERVO_DB = [
         "weight_g": 17.5,
         "type": "digital",
         "category": "17g",
+        "waterproof": False,
     },
 ]
 
 AIR_DENSITY_KG_M3 = 1.225  # sea level, ISA
-SAFETY_FACTOR = 2.0
-AC_POSITION = 0.25          # aerodynamic centre as fraction of chord (thin airfoil)
+SAFETY_FACTOR     = 2.0
+GUST_FACTOR       = 1.35   # storm/turbulence gust load multiplier (~35% extra)
+AC_POSITION       = 0.25   # aerodynamic centre as fraction of chord (thin airfoil)
 
 
 def dynamic_pressure(speed_kmh: float) -> float:
@@ -352,14 +447,26 @@ def hinge_moment_elevator(
     }
 
 
-def recommend_servos(required_oz_in: float, top_n: int = 3) -> list:
+def recommend_servos(
+    required_oz_in: float,
+    top_n: int = 3,
+    waterproof_only: bool = False,
+) -> list:
     """
     Return top_n servos that meet the torque requirement, sorted by margin.
 
     Uses the highest voltage torque rating available for each servo.
+
+    Parameters
+    ----------
+    required_oz_in  : minimum torque the servo must provide (oz-in)
+    top_n           : number of results to return
+    waterproof_only : if True, only return servos rated waterproof
     """
     candidates = []
     for servo in SERVO_DB:
+        if waterproof_only and not servo.get("waterproof", False):
+            continue
         max_torque = max(t["oz_in"] for t in servo["torque"])
         max_torque_entry = max(servo["torque"], key=lambda t: t["oz_in"])
         if max_torque >= required_oz_in:
@@ -369,6 +476,7 @@ def recommend_servos(required_oz_in: float, top_n: int = 3) -> list:
                 "category": servo["category"],
                 "type": servo["type"],
                 "weight_g": servo["weight_g"],
+                "waterproof": servo.get("waterproof", False),
                 "torque_specs": servo["torque"],
                 "speed_specs": servo["speed"],
                 "max_torque_oz_in": round(max_torque, 1),
@@ -412,6 +520,7 @@ def run_tail_elevator_selection(
     cruise_kmh: float,
     top_speed_kmh: float,
     surface_type: str = "stabilator",
+    waterproof: bool = False,
 ) -> None:
     """
     Full servo selection report for a split horizontal tail.
@@ -439,20 +548,23 @@ def run_tail_elevator_selection(
             top_speed_kmh
         )
 
-    recommendations = recommend_servos(result["required_torque_oz_in"])
+    gust = GUST_FACTOR if waterproof else 1.0
+    gust_required_oz_in = result["required_torque_oz_in"] * gust
+    recommendations = recommend_servos(gust_required_oz_in, waterproof_only=waterproof)
 
-    req_nm  = result["required_torque_nm"]
-    req_oiz = result["required_torque_oz_in"]
-    req_kg  = req_nm * 10.197          # N·m → kg·cm
-    req_disp = (_kg_or_g(req_kg) if req_kg < 100
-                else f"{req_kg:.2f} kg·cm")
+    req_nm   = result["required_torque_nm"] * gust
+    req_oiz  = gust_required_oz_in
+    req_kg   = req_nm * 10.197
+    req_disp = (_kg_or_g(req_kg) if req_kg < 100 else f"{req_kg:.2f} kg·cm")
 
     hm_nm   = result["hinge_moment_nm"]
     hm_kg   = hm_nm * 10.197
     hm_disp = (_kg_or_g(hm_kg) if hm_kg < 100 else f"{hm_kg:.2f} kg·cm")
 
+    wp_tag = "  [WATERPROOF + GUST RATED]" if waterproof else ""
+
     print("=" * 68)
-    print("  TAIL SERVO SELECTION REPORT")
+    print(f"  TAIL SERVO SELECTION REPORT{wp_tag}")
     print("=" * 68)
     print(f"  Surface type        : {result['surface_type'].capitalize()}")
     print(f"  Total area          : {total_area_mm2:.2f} mm²")
@@ -463,6 +575,8 @@ def run_tail_elevator_selection(
     print(f"  Hinge from LE       : {hinge_from_le_mm:.1f} mm")
     print(f"  Cruise speed        : {cruise_kmh} km/h")
     print(f"  Top speed           : {top_speed_kmh} km/h")
+    if waterproof:
+        print(f"  Gust factor         : {GUST_FACTOR}×  (storm/turbulence loading)")
     print("-" * 68)
     print("  AERODYNAMICS")
     print("-" * 68)
@@ -481,9 +595,10 @@ def run_tail_elevator_selection(
     print(f"  Dynamic pressure    : {result['dynamic_pressure_pa']:.1f} Pa")
     print(f"  Hinge moment        : {hm_nm:.3f} N·m  "
           f"({result['hinge_moment_oz_in']:.1f} oz-in / {hm_disp})")
+    sf_note = f"{SAFETY_FACTOR}× SF × {GUST_FACTOR}× gust" if waterproof else f"{SAFETY_FACTOR}× safety factor"
     print(f"  Required torque     : {req_nm:.3f} N·m  "
           f"({req_oiz:.1f} oz-in / {req_disp})"
-          f"  [{SAFETY_FACTOR}× safety factor]")
+          f"  [{sf_note}]")
     print("=" * 68)
     print("  SERVO RECOMMENDATIONS  (per half, one servo each)")
     print("=" * 68)
@@ -495,7 +610,8 @@ def run_tail_elevator_selection(
         for i, s in enumerate(recommendations, 1):
             max_kg = s["max_torque_oz_in"] / 13.89
             need_kg = s["required_oz_in"] / 13.89
-            print(f"\n  [{i}] {s['name']}  ({s['category']}, {s['type']})"
+            wp_mark = " ✓WP" if s["waterproof"] else ""
+            print(f"\n  [{i}] {s['name']}{wp_mark}  ({s['category']}, {s['type']})"
                   f"  —  {s['weight_g']} g")
             print(f"      Torque : {format_torque_specs(s['torque_specs'])}")
             print(f"      Speed  : {format_speed_specs(s['speed_specs'])}")
@@ -516,6 +632,7 @@ def run_aileron_selection(
     chord_mm: float,
     hinge_from_le_mm: float,
     top_speed_kmh: float,
+    waterproof: bool = False,
 ) -> None:
     """
     Servo selection report for a single aileron panel (one side).
@@ -539,17 +656,23 @@ def run_aileron_selection(
     )
     recommendations = recommend_servos(result["required_torque_oz_in"])
 
-    req_nm  = result["required_torque_nm"]
-    req_oiz = result["required_torque_oz_in"]
+    gust    = GUST_FACTOR if waterproof else 1.0
+    req_nm  = result["required_torque_nm"] * gust
+    req_oiz = result["required_torque_oz_in"] * gust
     req_kg  = req_nm * 10.197
     req_disp = _kg_or_g(req_kg)
+
+    recommendations = recommend_servos(req_oiz, waterproof_only=waterproof)
 
     hm_nm  = result["hinge_moment_nm"]
     hm_kg  = hm_nm * 10.197
     hm_disp = _kg_or_g(hm_kg)
 
+    wp_tag  = "  [WATERPROOF + GUST RATED]" if waterproof else ""
+    sf_note = f"{SAFETY_FACTOR}× SF × {GUST_FACTOR}× gust" if waterproof else f"{SAFETY_FACTOR}× safety factor"
+
     print("=" * 68)
-    print(f"  AILERON SERVO SELECTION — {label.upper()}")
+    print(f"  AILERON SERVO SELECTION — {label.upper()}{wp_tag}")
     print("=" * 68)
     print(f"  Area (per side)     : {area_per_side_mm2:.2f} mm²")
     print(f"  Span                : {span_mm:.2f} mm")
@@ -558,13 +681,15 @@ def run_aileron_selection(
           f"  ({balance_frac * 100:.1f}% balance)")
     print(f"  Ch effective        : {ch_eff}")
     print(f"  Top speed           : {top_speed_kmh} km/h")
+    if waterproof:
+        print(f"  Gust factor         : {GUST_FACTOR}×  (storm/turbulence loading)")
     print("-" * 68)
     print(f"  Dynamic pressure    : {result['dynamic_pressure_pa']:.1f} Pa")
     print(f"  Hinge moment        : {hm_nm:.4f} N·m"
           f"  ({result['hinge_moment_oz_in']:.2f} oz-in / {hm_disp})")
     print(f"  Required torque     : {req_nm:.4f} N·m"
           f"  ({req_oiz:.2f} oz-in / {req_disp})"
-          f"  [{SAFETY_FACTOR}× safety factor]")
+          f"  [{sf_note}]")
     print("=" * 68)
     print("  SERVO RECOMMENDATIONS  (one per panel)")
     print("=" * 68)
@@ -575,7 +700,8 @@ def run_aileron_selection(
         for i, s in enumerate(recommendations, 1):
             max_kg = s["max_torque_oz_in"] / 13.89
             need_kg = s["required_oz_in"] / 13.89
-            print(f"\n  [{i}] {s['name']}  ({s['category']}, {s['type']})"
+            wp_mark = " ✓WP" if s["waterproof"] else ""
+            print(f"\n  [{i}] {s['name']}{wp_mark}  ({s['category']}, {s['type']})"
                   f"  —  {s['weight_g']} g")
             print(f"      Torque : {format_torque_specs(s['torque_specs'])}")
             print(f"      Speed  : {format_speed_specs(s['speed_specs'])}")
@@ -597,6 +723,7 @@ if __name__ == "__main__":
         cruise_kmh=100,
         top_speed_kmh=160,
         surface_type="stabilator",
+        waterproof=True,
     )
 
     # --- Ailerons ---
@@ -610,6 +737,7 @@ if __name__ == "__main__":
         chord_mm=AILERON_CHORD_MM,
         hinge_from_le_mm=AILERON_HINGE_MM,
         top_speed_kmh=160,
+        waterproof=True,
     )
 
     run_aileron_selection(
@@ -618,5 +746,6 @@ if __name__ == "__main__":
         span_mm=181.92023,
         chord_mm=AILERON_CHORD_MM,
         hinge_from_le_mm=AILERON_HINGE_MM,
-        top_speed_kmh=100,   # low-medium speed surface
+        top_speed_kmh=100,
+        waterproof=True,
     )
